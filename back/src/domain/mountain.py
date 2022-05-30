@@ -2,16 +2,22 @@ import sqlite3
 
 
 class Mountain:
-    def __init__(self,name,height):
-        self.name= name
+    def __init__(self, id, name, height, city, img, location):
+        self.id = id
+        self.name = name
         self.height = height
-       
+        self.city = city
+        self.img = img
+        self.location = location
 
     def to_dict(self):
         return {
+            "id": self.id,
             "name": self.name,
             "height": self.height,
-           
+            "city": self.city,
+            "img": self.img,
+            "location": self.location,
         }
 
 
@@ -28,8 +34,12 @@ class MountainRepository:
     def init_tables(self):
         sql = """
             create table if not exists mountains (
-                name text,
-                height integer
+                id INTEGER,
+                name VARCHAR(100),
+                height INTEGER,
+                city VARCHAR(100),
+                img varchar,
+                location VARCHAR(100)
                
             )
         """
@@ -38,11 +48,9 @@ class MountainRepository:
         cursor.execute(sql)
         conn.commit()
 
-   
-
     def save(self, mountain):
-        sql = """insert into mountains (name,height) values (
-            :name,:height
+        sql = """insert into mountains (id,name,height,city,img,location) values (
+          :id,:name,:height,:city,:img,:location
         ) """
         conn = self.create_conn()
         cursor = conn.cursor()
@@ -62,3 +70,20 @@ class MountainRepository:
 
         mountains = [Mountain(**item) for item in data]
         return mountains
+
+    def get_by_id(self, id):
+        sql = """SELECT * FROM mountains WHERE id=:id"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql, {"id": id})
+        data = cursor.fetchone()
+        mountain = Mountain(**data)
+        return mountain
+
+    def delete_by_id(self, id):
+        sql = """DELETE FROM mountains WHERE id=:id"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql, {"id": id})
+        print(sql, id)
+        conn.commit()

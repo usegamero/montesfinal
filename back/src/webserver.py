@@ -16,33 +16,22 @@ def create_app(repositories):
 
         return object_to_json(mountain)
 
-    # @app.route("/api/info", methods=["GET"])
-    # def info_get():
-    #     info = repositories["info"].get_info()
-    #     return object_to_json(info)
+    @app.route("/api/mountains/<id>", methods=["GET"])
+    def mountains_get_by_id(id):
+        mountain = repositories["mountain"].get_by_id(id)
+        return object_to_json(mountain)
 
-    # @app.route("/api/contacts", methods=["GET"])
-    # def contacts_get_all_by_user():
-    #     user_id = request.headers.get("Authorization")
-    #     all_contacts = repositories["contacts"].search_by_user_id(user_id)
-    #     return object_to_json(all_contacts)
+    @app.route("/api/mountains", methods=["POST"])
+    def mountains_post():
+        body = request.json
+        mountain = Mountain(**body)
+        repositories["mountain"].save(mountain)
 
-    # @app.route("/api/contacts", methods=["POST"])
-    # def contacts_post():
-    #     body = request.json
-    #     contact = Contact(**body)
-    #     repositories["contacts"].save(contact)
+        return ""
 
-    #     return ""
-
-    # @app.route("/api/contacts/<id>", methods=["GET"])
-    # def contacts_get_by_id(id):
-    #     contact = repositories["contacts"].get_by_id(id)
-    #     return object_to_json(contact)
-
-    # @app.route("/api/users", methods=["GET"])
-    # def users_get_all():
-    #     all_users = repositories["users"].get_all()
-    #     return object_to_json(all_users)
+    @app.route("/api/mountains/<id>", methods=["DELETE"])
+    def mountains_delete_by_id(id):
+        repositories["mountain"].delete_by_id(id)
+        return ""
 
     return app

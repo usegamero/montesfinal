@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import MountainsPage from "@/pages/mountains/MountainsPage.vue";
-import RiversPage from "@/pages/rivers/RiversPage.vue";
+import MountainsDetailPage from "@/pages/mountainsDetail/MountainsDetailPage.vue";
 import HomePage from "@/pages/home/HomePage.vue";
+import MountainsAddPage from "@/pages/mountainsAdd/MountainsAddPage.vue";
 
 const routes = [
   {
@@ -11,14 +12,20 @@ const routes = [
   },
 
   {
-    path: "/rivers",
-    name: "RiversPage",
-    component: RiversPage,
+    path: "/mountains/:id",
+    name: "MountainsDetailPage",
+    component: MountainsDetailPage,
   },
   {
     path: "/",
     name: "HomePage",
     component: HomePage,
+  },
+
+  {
+    path: "/mountains/add",
+    name: "MountainsAddPage",
+    component: MountainsAddPage,
   },
 ];
 
