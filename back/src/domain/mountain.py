@@ -2,13 +2,14 @@ import sqlite3
 
 
 class Mountain:
-    def __init__(self, id, name, height, city, img, location):
+    def __init__(self, id, name, height, city, img, location, description):
         self.id = id
         self.name = name
         self.height = height
         self.city = city
         self.img = img
         self.location = location
+        self.description = description
 
     def to_dict(self):
         return {
@@ -18,6 +19,7 @@ class Mountain:
             "city": self.city,
             "img": self.img,
             "location": self.location,
+            "description": self.description,
         }
 
 
@@ -39,7 +41,8 @@ class MountainRepository:
                 height INTEGER,
                 city VARCHAR(100),
                 img varchar,
-                location VARCHAR(100)
+                location VARCHAR(100),
+                description VARCHAR(100)
                
             )
         """
@@ -49,8 +52,8 @@ class MountainRepository:
         conn.commit()
 
     def save(self, mountain):
-        sql = """insert into mountains (id,name,height,city,img,location) values (
-          :id,:name,:height,:city,:img,:location
+        sql = """insert into mountains (id,name,height,city,img,location,description) values (
+          :id,:name,:height,:city,:img,:location, :description
         ) """
         conn = self.create_conn()
         cursor = conn.cursor()
