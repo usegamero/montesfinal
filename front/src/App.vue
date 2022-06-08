@@ -1,14 +1,18 @@
 <template>
   <div id="nav">
-    <router-link to="/mountains">Mountains hola</router-link>|
+    <router-link to="/mountains">Montañas</router-link>|
 
-    <router-link to="/">Soy la home</router-link>|
-    <router-link to="/mountains/add">Añadir más montes</router-link>|
+    <router-link to="/">Home</router-link>|
+    <router-link to="/mountains/add">Añadir monte</router-link>|
   </div>
   <router-view />
 </template>
 
 <script>
 </script>
-<style>
+<style scoped>
+#nav{
+  font-size: 25px 
+  ;
+}
 </style>

@@ -1,9 +1,11 @@
 <template>
   <!-- <h1>Contact detail: {{ mountain.id }}</h1> -->
-  <ul class="contact-item" >
-    <li>Nombre: {{mountain.name}}</li>
-    <li>Altura: {{ mountain.height }}</li>
-    <li>Ciudad: {{ mountain.city }}</li>
+  <ul class="contact-item">
+    <li><b> Nombre:</b> {{ mountain.name }}</li>
+    <li><b> Altura:</b> {{ mountain.height }}</li>
+    <li><b> Ciudad:</b> {{ mountain.city }}</li>
+    <li><b> Localización:</b> {{ mountain.location }}</li>
+    <li><b> Descripción:</b> {{ mountain.description }}</li>
   </ul>
 </template>
 
@@ -31,7 +33,8 @@ export default {
       // this.contacts = await response.json();
       let id = this.$route.params.id;
       const response = await fetch(
-        `${config.API_PATH}/mountains/${id}`,settings
+        `${config.API_PATH}/mountains/${id}`,
+        settings
       );
       this.mountain = await response.json();
     },
@@ -44,9 +47,16 @@ h1 {
   font-style: italic;
 }
 .contact-item {
-  border: 2px solid dodgerblue;
+  border: 5px solid dodgerblue;
   border-radius: 1em;
   padding: 1em;
   text-align: left;
+  font-size: 30px ;
+  color:rgb(69, 143, 19);
+  background-color: red;
+}
+li {
+  list-style: none;
+  
 }
 </style>

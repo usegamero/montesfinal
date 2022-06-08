@@ -3,12 +3,12 @@
   <section>
     <article class="item" v-for="monte in montes" :key="monte.id">
       <button @click="openMountainDetail(monte)">Ver Detalle</button>
-      <button @click="deleteMountain(monte)">Borrar Montaña</button>
       <img :src="monte.img" alt="" srcset="" />
       <h2>
         {{ monte.name }}
       </h2>
       <!-- <router-link :to="`/contacts/${contact.id}`">ver detalle</router-link> -->
+      <button @click="deleteMountain(monte)">Borrar Montaña</button>
     </article>
     <br />
     {{ montañadelocalstorage }}
@@ -57,11 +57,11 @@ export default {
 </script>
 
 }
-<style>
+<!-- <style>
 * {
   background-color: beige;
 }
-</style>
+</style> -->
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 h1 {
@@ -127,7 +127,7 @@ button:active {
 }
 .item {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   text-align: center;
   justify-content: center;
   align-items: center;
