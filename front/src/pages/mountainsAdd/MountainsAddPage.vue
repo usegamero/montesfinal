@@ -3,7 +3,7 @@
   <form>
     <section class="form-data">
       <p>Nombre de la montaña</p>
-      <input type="text" id="name" class="input" v-model="mountain.name" />
+      <input type="text" id="name" class="input " v-model="mountain.name" />
       <p>Altura de la montaña</p>
       <input type="text" id="name" class="input" v-model="mountain.height" />
       <p>Ciudad</p>
@@ -13,7 +13,12 @@
       <p>Localización de la montaña</p>
       <input type="text" id="name" class="input" v-model="mountain.location" />
       <p>Descripción de la montaña</p>
-      <input type="text" id="name" class="input" v-model="mountain.description" />
+      <input
+        type="text"
+        id="name"
+        class="input"
+        v-model="mountain.description"
+      />
     </section>
     <button @click.prevent="onSaveClicked">Guardar</button>
   </form>
@@ -122,19 +127,22 @@ button:active {
   background: linear-gradient(32deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
 }
 .input {
- border: 3px solid rgb(127, 170, 170);
- border-radius: 20px;
- background-image: linear-gradient(120deg,#3c3c3c,#585858);
- color: rgb(127, 170, 170);
- cursor: pointer;
- padding: 7px 12px;
- font-family: Arial, Helvetica, sans-serif;
- font-size: 17px;
- transition: all 1s;
- max-width: 170px;
+  border: 3px solid rgb(127, 170, 170);
+  border-radius: 20px;
+  background-image: linear-gradient(120deg, #3c3c3c, #585858);
+  color: rgb(127, 170, 170);
+  cursor: pointer;
+  padding: 7px 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  transition: all 1s;
+  max-width: 170px;
+  margin-bottom: 10px;
 }
 
+
+
 .input:focus {
- outline-color: rgb(127, 170, 170);
+  outline-color: rgb(127, 170, 170);
 }
 </style>

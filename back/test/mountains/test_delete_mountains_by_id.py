@@ -21,7 +21,7 @@ def test_end_point_should_return_mountains():
 
     mountain_repository.save(teide)
 
-    # -------------
+
 
     response = client.delete("/api/mountains/1")
     response_get = client.get("/api/mountains")
