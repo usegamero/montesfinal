@@ -3,7 +3,7 @@
   <form>
     <section class="form-data">
       <p>Nombre de la montaña</p>
-      <input type="text" id="name" class="input " v-model="mountain.name" />
+      <input type="text" id="name" class="input" v-model="mountain.name" />
       <p>Altura de la montaña</p>
       <input type="text" id="name" class="input" v-model="mountain.height" />
       <p>Ciudad</p>
@@ -45,20 +45,38 @@ export default {
   },
   methods: {
     async onSaveClicked() {
-      this.mountain.id = uuidv4();
-      const settings = {
-        method: "POST",
-        body: JSON.stringify(this.mountain),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
+      if (this.isValidForm()) {
+        this.mountain.id = uuidv4();
 
-      await fetch(`${config.API_PATH}/mountains`, settings);
-      console.log("onSaveClicked", JSON.stringify(this.mountain));
+        const settings = {
+          method: "POST",
+          body: JSON.stringify(this.mountain),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+
+        await fetch(`${config.API_PATH}/mountains`, settings);
+        console.log("onSaveClicked", JSON.stringify(this.mountain));
+      } else {
+        alert("Faltan campos por rellenar");
+      }
 
       // const response = await fetch("http://localhost:5000/api/mountains");
       // this.mountains = await response.json();
+    },
+    isValidForm() {
+      if (
+        this.mountain.name == "" ||
+        this.mountain.height == "" ||
+        this.mountain.city == "" ||
+        this.mountain.img == "" ||
+        this.mountain.location == ""
+      ) {
+        return false;
+      } else {
+        return true;
+      }
     },
   },
 };
@@ -139,8 +157,6 @@ button:active {
   max-width: 170px;
   margin-bottom: 10px;
 }
-
-
 
 .input:focus {
   outline-color: rgb(127, 170, 170);
